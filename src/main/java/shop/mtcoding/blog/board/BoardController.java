@@ -17,6 +17,11 @@ import java.util.List;
 public class BoardController {
     private final BoardNativeRepository boardNativeRepository;
 
+    @PostMapping("/board/{id}/delete")
+    public String deleteById (@PathVariable Integer id){
+        boardNativeRepository.deleteById(id);
+        return "redirect:/";
+    }
 
     @GetMapping("/")
     public String index(HttpServletRequest request) {

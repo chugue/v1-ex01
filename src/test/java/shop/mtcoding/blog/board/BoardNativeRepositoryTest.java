@@ -14,6 +14,21 @@ public class BoardNativeRepositoryTest {
     @Autowired
     private EntityManager em;
 
+    @Test
+    public void deleteById_test(){
+        // given
+        int boardId = 1;
+        // when
+        String q = """
+                delete from board_tb b where b.id = ? 
+                """;
+        Query query = em.createNativeQuery(q);
+        query.setParameter(1, boardId);
+        query.executeUpdate();
+        // then
+
+    }
+
 
     @Test
     public void findById_test(){

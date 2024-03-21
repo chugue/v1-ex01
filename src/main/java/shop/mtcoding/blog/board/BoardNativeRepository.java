@@ -42,4 +42,15 @@ public class BoardNativeRepository {
         query.setParameter(1, boardId);
         return (Board) query.getSingleResult();
     }
+
+    @Transactional
+    public void deleteById (Integer boardId){
+        String q = """
+                delete from board_tb b where b.id = ? 
+                """;
+        Query query = em.createNativeQuery(q);
+        query.setParameter(1,boardId);
+        query.executeUpdate();
+    }
+
 }

@@ -16,6 +16,20 @@ public class BoardNativeRepositoryTest {
 
 
     @Test
+    public void findById_test(){
+        // given
+        int boardId = 4;
+        // when
+        String q = """
+                select * from board_tb b where b.id = ? 
+                """;
+        Query query = em.createNativeQuery(q, Board.class);
+        query.setParameter(1, boardId);
+        // then
+
+    }
+
+    @Test
     public void findAll_test(){
         // given
 

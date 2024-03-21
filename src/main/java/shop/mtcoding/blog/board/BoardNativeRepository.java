@@ -30,7 +30,7 @@ public class BoardNativeRepository {
         String q = """
                 select * from board_tb b order by b.id desc
                 """;
-        Query query = em.createNativeQuery(q);
+        Query query = em.createNativeQuery(q, Board.class);
         return query.getResultList();
     }
 }

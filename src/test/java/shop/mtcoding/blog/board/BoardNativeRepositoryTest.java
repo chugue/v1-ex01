@@ -14,6 +14,27 @@ public class BoardNativeRepositoryTest {
     @Autowired
     private EntityManager em;
 
+
+    @Test
+    public void updateById_test(){
+        // given
+        String title = "테스트1";
+        String content = "테스트1";
+        String username = "테스트1";
+        Integer boardId = 1;
+        // when
+        String q = """
+                UPDATE board_tb SET title =? , content = ? , username = ?  where id = ? 
+                """;
+        Query query = em.createNativeQuery(q);
+        query.setParameter(1,title);
+        query.setParameter(2,content);
+        query.setParameter(3,username);
+        query.setParameter(4,boardId);
+        query.executeUpdate();
+        // then
+
+    }
     @Test
     public void deleteById_test(){
         // given

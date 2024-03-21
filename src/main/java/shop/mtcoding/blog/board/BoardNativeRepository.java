@@ -15,6 +15,20 @@ public class BoardNativeRepository {
     private final EntityManager em;
 
     @Transactional
+    public void updateById(Integer boardId, String username, String title, String content){
+        String q = """
+                UPDATE board_tb SET title =? , content = ? , username = ?  where id = ? 
+                """;
+        Query query = em.createNativeQuery(q);
+        query.setParameter(1,title);
+        query.setParameter(2,content);
+        query.setParameter(3,username);
+        query.setParameter(4,boardId);
+        query.executeUpdate();
+    }
+
+
+    @Transactional
     public void save (String title, String content, String username){
         String q = """
                 insert into board_tb (title, content, username, created_at) values (?,?,?, NOW())
